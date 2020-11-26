@@ -11,11 +11,11 @@ public class Book {
     @GeneratedValue
     private Integer id;
 
-    @ManyToMany(mappedBy = "writtenBooks")  // it is a week side (maybe later)
+    @ManyToMany(mappedBy = "writtenBooks")
     private Collection<Author> authorId; // FK
 
-    @ManyToMany(mappedBy = "artedBooks")  // it is a week side (maby later)
-    private Collection<Painter> painterId; // FK
+    @ManyToOne
+    private Painter painterId; // FK
 
     @Column(name = "book_name")
     private String bookName;
@@ -45,11 +45,11 @@ public class Book {
         this.authorId = authorId;
     }
 
-    public Collection<Painter> getPainterId() {
+    public Painter getPainterId() {
         return painterId;
     }
 
-    public void setPainterId(Collection<Painter> painterId) {
+    public void setPainterId(Painter painterId) {
         this.painterId = painterId;
     }
 

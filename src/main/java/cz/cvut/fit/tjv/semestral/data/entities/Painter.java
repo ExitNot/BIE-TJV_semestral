@@ -13,7 +13,7 @@ public class Painter {
     @JoinColumn(name = "user_id")
     private User userId; //  FK
 
-    @ManyToMany
+    @OneToMany
     @JoinTable(
             name = "books_arted_by",
             joinColumns = @JoinColumn(name = "art_id"),

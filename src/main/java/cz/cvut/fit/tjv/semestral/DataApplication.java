@@ -17,11 +17,11 @@ public class DataApplication {
         SpringApplication.run( DataApplication.class, args );
     }
 
-    @EventListener( ApplicationReadyEvent.class )
-    public void afterStartup() {
-        Book b = new Book();
-        b.setBookName("Kafka on the shore");
-        b.setWrittenBy("Haruki Murakami");
-        bookRepository.save(b);
-    }
+//    @EventListener( ApplicationReadyEvent.class )
+//    public void afterStartup() {
+//        Book b = new Book();
+//        b.setBookName("Kafka on the shore");
+//        b.setWrittenBy("Haruki Murakami");
+//        bookRepository.save(b);
+//    }
 }
