@@ -2,13 +2,19 @@ plugins {
     id 'java'
 }
 
-group 'cz.cvut.fit.tjv'
-version '0.1-SNAPSHOT'
+group = 'cz.cvut.fit.tjv'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+//    JPA
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.0.0'
+//    JDBC Driver (N)
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    JUnit (N)
 }
+
