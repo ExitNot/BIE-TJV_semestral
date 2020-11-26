@@ -1,4 +1,4 @@
-package cz.cvut.fit.tjv.database;
+package cz.cvut.fit.tjv.data.entities;
 
 import jakarta.persistence.*;
 
@@ -19,7 +19,7 @@ public class Author {
             joinColumns = @JoinColumn(name = "auth_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
-    private Collection<Book> writtenBooks;
+    private Collection<Book> booksWrittenBy;
 
     private String pseudonym;
     private String info;

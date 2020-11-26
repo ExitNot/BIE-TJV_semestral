@@ -1,4 +1,4 @@
-package cz.cvut.fit.tjv.database;
+package cz.cvut.fit.tjv.data.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

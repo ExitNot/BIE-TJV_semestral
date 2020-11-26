@@ -1,6 +1,5 @@
-package cz.cvut.fit.tjv.database;
+package cz.cvut.fit.tjv.data.entities;
 
-import com.sun.security.jgss.AuthorizationDataEntry;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -14,6 +13,7 @@ public class User {
 
     @OneToOne
     private Authentication login;  // FK
+
     private String displayedName;
     private String email;
 
