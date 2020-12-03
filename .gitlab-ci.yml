@@ -1,0 +1,8 @@
+stages:
+    -build
+    
+gradle-build:
+    stage: build
+    image: openjdk:11
+    script:
+        - ./gradlew --no-daemon build
