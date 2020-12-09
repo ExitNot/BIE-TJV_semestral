@@ -1,9 +1,7 @@
 package cz.cvut.fit.tjv.semestral.data.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+
+import javax.persistence.*;
 
 @Entity
 public class Authentication {

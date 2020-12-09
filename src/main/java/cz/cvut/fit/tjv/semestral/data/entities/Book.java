@@ -1,8 +1,6 @@
 package cz.cvut.fit.tjv.semestral.data.entities;
 
-import jakarta.persistence.*;
-import org.springframework.context.annotation.Bean;
-
+import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
@@ -11,11 +9,11 @@ public class Book {
     @GeneratedValue
     private Integer id;
 
-    @ManyToMany(mappedBy = "writtenBooks")
+    @ManyToMany(mappedBy = "writtenBooks")  // it is a week side (maybe later)
     private Collection<Author> authorId; // FK
 
-    @ManyToOne
-    private Painter painterId; // FK
+    @ManyToMany(mappedBy = "artedBooks")  // it is a week side (maby later)
+    private Collection<Painter> painterId; // FK
 
     @Column(name = "book_name")
     private String bookName;
@@ -45,11 +43,11 @@ public class Book {
         this.authorId = authorId;
     }
 
-    public Painter getPainterId() {
+    public Collection<Painter> getPainterId() {
         return painterId;
     }
 
-    public void setPainterId(Painter painterId) {
+    public void setPainterId(Collection<Painter> painterId) {
         this.painterId = painterId;
     }
 

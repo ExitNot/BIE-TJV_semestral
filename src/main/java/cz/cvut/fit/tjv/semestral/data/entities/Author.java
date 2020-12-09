@@ -1,7 +1,6 @@
 package cz.cvut.fit.tjv.semestral.data.entities;
 
-import jakarta.persistence.*;
-
+import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
