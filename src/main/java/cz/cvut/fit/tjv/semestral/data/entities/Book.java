@@ -7,28 +7,25 @@ import java.util.Collection;
 public class Book {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @ManyToMany(mappedBy = "booksCreatedBy")  // it is a week side
     private Collection<User> creatorId; // FK
 
     @Column(name = "book_name")
     private String bookName;
-    @Column(name = "written_by")
-    private String writtenBy;  // Author pseudonym
-    @Column(name = "art_by")
-    private String artBy;  // Art pseudonym
     private String genre;
     private String publishDate;
     private String description;
-    private Integer chaptersAmount;
-    private Integer booksAmount;
+    private Integer issueNumber;
 
-    public Integer getId() {
+    private Integer satisfactionScore;  // 1-5 rate, where 5 - is the best grade.
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,22 +43,6 @@ public class Book {
 
     public void setBookName(String bookName) {
         this.bookName = bookName;
-    }
-
-    public String getWrittenBy() {
-        return writtenBy;
-    }
-
-    public void setWrittenBy(String writtenBy) {
-        this.writtenBy = writtenBy;
-    }
-
-    public String getArtBy() {
-        return artBy;
-    }
-
-    public void setArtBy(String artBy) {
-        this.artBy = artBy;
     }
 
     public String getGenre() {
@@ -88,19 +69,22 @@ public class Book {
         this.description = description;
     }
 
-    public Integer getChaptersAmount() {
-        return chaptersAmount;
+    public Integer getIssueNumber() {
+        return issueNumber;
     }
 
-    public void setChaptersAmount(Integer chaptersAmount) {
-        this.chaptersAmount = chaptersAmount;
+    public void setIssueNumber(Integer chaptersAmount) {
+        this.issueNumber = chaptersAmount;
     }
 
-    public Integer getBooksAmount() {
-        return booksAmount;
+    public Integer getSatisfactionScore() {
+        return satisfactionScore;
     }
 
-    public void setBooksAmount(Integer booksAmount) {
-        this.booksAmount = booksAmount;
+    public void setSatisfactionScore(Integer satisfactionScore) {
+        this.satisfactionScore = satisfactionScore;
     }
+
+    public void upSatisfactionScore(){ this.satisfactionScore++; }
+    public void downSatisfactionScore(){ this.satisfactionScore--; }
 }

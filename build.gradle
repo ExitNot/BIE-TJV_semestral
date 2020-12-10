@@ -15,14 +15,13 @@ repositories {
 
 dependencies {
     runtimeOnly 'org.postgresql:postgresql:42.2.18'  // JDBC driver
-//    JUnit
-    testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")  // JUnit
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 //    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.0.1.RELEASE'
 }
 
-// TODO JUnit tests lab 5 (gradle part)
+
 test {
     useJUnitPlatform()
 }
