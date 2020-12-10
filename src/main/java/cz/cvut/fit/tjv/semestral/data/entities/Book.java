@@ -6,14 +6,11 @@ import java.util.Collection;
 @Entity
 public class Book {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToMany(mappedBy = "writtenBooks")  // it is a week side (maybe later)
-    private Collection<Author> authorId; // FK
-
-    @ManyToMany(mappedBy = "artedBooks")  // it is a week side (maby later)
-    private Collection<Painter> painterId; // FK
+    @ManyToMany(mappedBy = "booksCreatedBy")  // it is a week side
+    private Collection<User> creatorId; // FK
 
     @Column(name = "book_name")
     private String bookName;
@@ -35,20 +32,12 @@ public class Book {
         this.id = id;
     }
 
-    public Collection<Author> getAuthorId() {
-        return authorId;
+    public Collection<User> getCreatorId() {
+        return creatorId;
     }
 
-    public void setAuthorId(Collection<Author> authorId) {
-        this.authorId = authorId;
-    }
-
-    public Collection<Painter> getPainterId() {
-        return painterId;
-    }
-
-    public void setPainterId(Collection<Painter> painterId) {
-        this.painterId = painterId;
+    public void setCreatorId(Collection<User> creatorId) {
+        this.creatorId = creatorId;
     }
 
     public String getBookName() {
