@@ -30,7 +30,6 @@ public class DataApplication {
         Book b = new Book();
         b.setBookName("Kafka on the shore");
         User u1 = new User();
-        u1.setId((long) 131);
         ArrayList<User> c = new ArrayList<User>();
         c.add(u1);
         b.setCreatorId(c);

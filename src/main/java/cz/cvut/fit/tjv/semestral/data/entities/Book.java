@@ -14,19 +14,14 @@ public class Book {
 
     @Column(name = "book_name")
     private String bookName;
-    private String genre;
     private String publishDate;
     private String description;
-    private Integer issueNumber;
+    private Integer issueNumber;  // nomer vipuska, dobav volume
 
     private Integer satisfactionScore;  // 1-5 rate, where 5 - is the best grade.
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Collection<User> getCreatorId() {
@@ -43,14 +38,6 @@ public class Book {
 
     public void setBookName(String bookName) {
         this.bookName = bookName;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
     }
 
     public String getPublishDate() {

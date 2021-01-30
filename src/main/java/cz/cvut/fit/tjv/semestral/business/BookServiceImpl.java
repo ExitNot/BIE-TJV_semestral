@@ -3,6 +3,8 @@ package cz.cvut.fit.tjv.semestral.business;
 import cz.cvut.fit.tjv.semestral.data.BookRepository;
 import cz.cvut.fit.tjv.semestral.data.entities.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,6 @@ public class BookServiceImpl implements BookService {
     @Override
     public void RateUp(Book b) throws IllegalAccessException {
         Optional<Book> bookOptional = bookRepository.findById(b.getId());
-
         if( bookOptional.isEmpty() ){
             throw new IllegalAccessException();
         }
@@ -44,7 +45,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book create(Book data) {
-        if( bookRepository.existsById(data.getId()) ){
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("id");
+        Example<Book> example = Example.of(data);
+
+        if( !bookRepository.findAll(example).isEmpty() ){
             throw new ExistingEntityException();
         }
         return bookRepository.save(data);

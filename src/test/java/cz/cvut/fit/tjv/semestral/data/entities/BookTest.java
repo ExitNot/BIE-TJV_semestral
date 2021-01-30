@@ -11,20 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class BookTest {
 
     @Test
-    void getId() {
-        Book b1 = new Book();
-        b1.setId((long) 1);
-        assertEquals(1, b1.getId());
-    }
-
-    @Test
-    void setId() {
-        Book b1 = new Book();
-        b1.setId((long) 1);
-        assertEquals(1, b1.getId());
-    }
-
-    @Test
     void getCreatorId() {
         Book b1 = new Book();
         User u1 = new User();
@@ -67,20 +53,6 @@ class BookTest {
         Book b1 = new Book();
         b1.setBookName("Berserk");
         assertEquals("Berserk", b1.getBookName());
-    }
-
-    @Test
-    void getGenre() {
-        Book b1 = new Book();
-        b1.setGenre("Dark fantasy");
-        assertEquals("Dark fantasy", b1.getGenre());
-    }
-
-    @Test
-    void setGenre() {
-        Book b1 = new Book();
-        b1.setGenre("Dark fantasy");
-        assertEquals("Dark fantasy", b1.getGenre());
     }
 
     @Test

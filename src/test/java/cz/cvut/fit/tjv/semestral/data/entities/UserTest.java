@@ -9,14 +9,6 @@ class UserTest {
     @Test
     void getId() {
         User u1 = new User();
-        u1.setId((long) 1);
-        assertEquals((long)1, u1.getId());
-    }
-
-    @Test
-    void setId() {
-        User u1 = new User();
-        u1.setId((long) 1);
         assertEquals((long)1, u1.getId());
     }
 
