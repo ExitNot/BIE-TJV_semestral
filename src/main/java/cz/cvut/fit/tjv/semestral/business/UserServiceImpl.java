@@ -1,8 +1,11 @@
 package cz.cvut.fit.tjv.semestral.business;
 
 import cz.cvut.fit.tjv.semestral.data.UserRepository;
+import cz.cvut.fit.tjv.semestral.data.entities.Auth;
 import cz.cvut.fit.tjv.semestral.data.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,7 +23,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User data) {
-        if( userRepository.existsById(data.getId()) ){
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("id");
+        Example<User> example = Example.of(data);
+
+        if( !userRepository.findAll(example).isEmpty() ){
             throw new ExistingEntityException();
         }
         return userRepository.save(data);

@@ -11,7 +11,7 @@ public class User {
     private Long id;  // PK
 
     @OneToOne
-    private Authentication login;  // FK
+    private Auth login;  // FK
 
     @ManyToMany
     @JoinTable(
@@ -29,11 +29,11 @@ public class User {
         return id;
     }
 
-    public Authentication getLogin() {
+    public Auth getLogin() {
         return login;
     }
 
-    public void setLogin(Authentication login) {
+    public void setLogin(Auth login) {
         this.login = login;
     }
 

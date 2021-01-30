@@ -9,7 +9,7 @@ class UserTest {
     @Test
     void getLogin() {
         User u1 = new User();
-        Authentication auth1 = new Authentication();
+        Auth auth1 = new Auth();
         auth1.setLogin("login");
         u1.setLogin(auth1);
         assertEquals(auth1, u1.getLogin());
@@ -18,7 +18,7 @@ class UserTest {
     @Test
     void setLogin() {
         User u1 = new User();
-        Authentication auth1 = new Authentication();
+        Auth auth1 = new Auth();
         auth1.setLogin("login");
         u1.setLogin(auth1);
         assertEquals(auth1, u1.getLogin());

@@ -4,7 +4,7 @@ package cz.cvut.fit.tjv.semestral.data.entities;
 import javax.persistence.*;
 
 @Entity
-public class Authentication {
+public class Auth {  // Authentication
     @Id
     private String login;  // PK
 
