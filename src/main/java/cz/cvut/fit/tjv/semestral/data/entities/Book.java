@@ -18,7 +18,7 @@ public class Book {
     private String description;
     private Integer issueNumber;  // nomer vipuska, dobav volume
 
-    private Integer satisfactionScore;  // 1-5 rate, where 5 - is the best grade.
+    private Integer satisfactionScore = 0;  // can be rised up and down, by default = 0
 
     public Long getId() {
         return id;
