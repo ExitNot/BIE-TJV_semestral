@@ -7,12 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserTest {
 
     @Test
-    void getId() {
-        User u1 = new User();
-        assertEquals((long)1, u1.getId());
-    }
-
-    @Test
     void getLogin() {
         User u1 = new User();
         Authentication auth1 = new Authentication();
