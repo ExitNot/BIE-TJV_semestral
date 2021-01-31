@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
 
 import javax.persistence.Entity;
 
@@ -12,6 +13,7 @@ import javax.persistence.Entity;
 @ComponentScan({ "cz.cvut.fit.tjv.semestral.rest_api", "cz.cvut.fit.tjv.semestral.business" })
 @EnableJpaRepositories("cz.cvut.fit.tjv.semestral.data")
 @EntityScan("cz.cvut.fit.tjv.semestral.data.entities")
+@EnableHypermediaSupport( type = EnableHypermediaSupport.HypermediaType.HAL )
 public class RestApplication {
 
     public static void main(String[] args) {

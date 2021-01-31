@@ -2,24 +2,39 @@ POST http://localhost:8080/api/v1/books
 Content-Type: application/json
 
 {
-"bookName" : "Simpsons Comics",
-"issueNumber" : 94,
-"publishDate" : "May 2004",
-"description" : "24/7th Heaven"
+  "bookName" : "Simpsons Comics",
+  "issueNumber" : 94,
+  "publishDate" : "May 2004",
+  "description" : "24/7th Heaven"
 }
 
 ###
 
+POST http://localhost:8080/api/v1/books
+Content-Type: application/json
 
+{
+"bookName" : "Simpsons Comics",
+"issueNumber" : 95,
+"publishDate" : "June 2004",
+"description" : "Coach Me If You Can"
+}
 
+###
 
+GET http://localhost:8080/api/v1/books?id=1
 
-#POST http://localhost:8080/api/v1/books
-#Content-Type: application/json
-#
+###
+
+GET http://localhost:8080/api/v1/books?page=1&size=1
+
+###
+
+#GET http://localhost:8080/api/v1/books/?page=0&size=2
+
+###
+
 #{
-#"bookName" : "Simpsons Comics",
-#"issueNumber" : 95,
-#"publishDate" : "June 2004",
-#"description" : "Coach Me If You Can"
+#"displayedName" : "Matt Groening",
+#    "UserType" : "writer"
 #}

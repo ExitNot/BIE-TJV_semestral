@@ -10,12 +10,15 @@ sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 
 dependencies {
+    implementation 'cz.cvut.fit.tjv.semestral:rest_model:1.0-SNAPSHOT'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'  // Spring JPA
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'  // HATEOAS
+//    implementation 'org.springframework.hateoas:spring-hateoas:1.1.2.RELEASE'
     runtimeOnly 'org.postgresql:postgresql:42.2.18'  // JDBC driver
     runtimeOnly 'com.h2database:h2'  // H2
 

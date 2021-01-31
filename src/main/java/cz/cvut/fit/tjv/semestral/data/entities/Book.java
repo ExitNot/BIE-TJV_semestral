@@ -1,6 +1,7 @@
 package cz.cvut.fit.tjv.semestral.data.entities;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Collection;
 
 @Entity
@@ -19,6 +20,24 @@ public class Book {
     private Integer issueNumber;  // nomer vipuska, dobav volume
 
     private Integer satisfactionScore = 0;  // can be rised up and down, by default = 0
+
+    public Book(){
+        this.bookName = "";
+        this.publishDate = "";
+        this.description = "";
+        this.issueNumber = 0;
+        creatorId = null;
+    }
+
+    public Book(String bookName, String publishDate, Integer issueNumber,
+                String description, Integer satisfactionScore, Collection<User> creatorId) {
+        this.bookName = bookName;
+        this.publishDate = publishDate;
+        this.issueNumber = issueNumber;
+        this.description = description;
+        this.satisfactionScore = satisfactionScore;
+        this.creatorId = creatorId;
+    }
 
     public Long getId() {
         return id;
