@@ -59,10 +59,10 @@ public class BookController {
         }
     }
 
-    @GetMapping(path = "/?id={id}")
-    public BookDto readOne(@PathVariable("id") Long id){
+    @GetMapping("/id={id}")
+    public BookDto readOne(@PathVariable("id") String id){
         return bookDtoAssembler.toModel(
-                bookService.readById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
+                bookService.readById(Long.parseLong(id)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
         );
     }
 
