@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.hateoas.PagedModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -41,7 +43,6 @@ public class BookController {
                 dto.getPublishDate(),
                 dto.getIssueNumber(),
                 dto.getDescription(),
-                dto.getSatisfactionScore(),
                 dto.getCreatorId() == null ? null :
                         dto.getCreatorId().stream()
                             .map(i -> userService.readById(i)
@@ -59,11 +60,12 @@ public class BookController {
         }
     }
 
-    @GetMapping("/id={id}")
+    @GetMapping("/id={id}")  // "/?id={id}" is not working
     public BookDto readOne(@PathVariable("id") String id){
         return bookDtoAssembler.toModel(
                 bookService.readById(Long.parseLong(id)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
-        );
+        ).add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).readAll(0, 5)
+                                ).withRel(IanaLinkRelations.COLLECTION));
     }
 
     @GetMapping

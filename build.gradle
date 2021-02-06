@@ -20,9 +20,15 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql:42.2.18'  // JDBC driver
     runtimeOnly 'com.h2database:h2'  // H2
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")  // JUnit
+//    testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")  // JUnit
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'junit', module: 'junit'
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testCompile "org.junit.jupiter:junit-jupiter-api:5.2.0"
+    testCompile "org.junit.jupiter:junit-jupiter-params:5.2.0"
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:5.2.0"
 }
-
 
 test {
     useJUnitPlatform()

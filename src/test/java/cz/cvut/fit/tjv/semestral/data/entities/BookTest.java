@@ -89,14 +89,14 @@ class BookTest {
     void getIssueNumber() {
         Book b1 = new Book();
         b1.setIssueNumber(1);
-        assertEquals(1, b1.getIssueNumber());
+        assertEquals(1, (int) b1.getIssueNumber());
     }
 
     @Test
     void setIssueNumber() {
         Book b1 = new Book();
         b1.setIssueNumber(1);
-        assertEquals(1, b1.getIssueNumber());
+        assertEquals(1, (int) b1.getIssueNumber());
     }
 
 }

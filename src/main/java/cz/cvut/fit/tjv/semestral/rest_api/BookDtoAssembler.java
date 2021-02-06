@@ -30,7 +30,6 @@ public class BookDtoAssembler extends RepresentationModelAssemblerSupport<Book, 
                 entity.getCreatorId() == null ? null :
                         entity.getCreatorId().stream()
                         .map(i -> i.getId()).collect(Collectors.toList())
-//                        .add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(BookController.class).readOne(entity.getId())).withSelfRel())
-        );
+        ).add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(BookController.class).readOne(entity.getId().toString())).withSelfRel());
     }
 }

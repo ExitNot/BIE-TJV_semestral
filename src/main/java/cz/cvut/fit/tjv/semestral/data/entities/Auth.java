@@ -13,6 +13,14 @@ public class Auth {  // Authentication
     @Column(name = "password_hash")
     private String passwordHash;
 
+    public Auth(){}
+
+    public Auth(String login, User userName, String passwordHash) {
+        this.login = login;
+        this.userName = userName;
+        this.passwordHash = passwordHash;
+    }
+
     public String getLogin() {
         return login;
     }

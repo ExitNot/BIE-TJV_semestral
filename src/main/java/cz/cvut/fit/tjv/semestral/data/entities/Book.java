@@ -30,12 +30,12 @@ public class Book {
     }
 
     public Book(String bookName, String publishDate, Integer issueNumber,
-                String description, Integer satisfactionScore, Collection<User> creatorId) {
+                String description, Collection<User> creatorId) {
         this.bookName = bookName;
         this.publishDate = publishDate;
         this.issueNumber = issueNumber;
         this.description = description;
-        this.satisfactionScore = satisfactionScore;
+        this.satisfactionScore = 0;
         this.creatorId = creatorId;
     }
 
