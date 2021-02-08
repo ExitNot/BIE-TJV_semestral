@@ -8,7 +8,10 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.Optional;
 
 @Service
@@ -44,8 +47,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book create(Book data) {
-        ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("id");
+    public Book create(Book data, MultipartFile img) {
+        try {
+            data.setImg(Base64.getEncoder().encodeToString(img.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Example<Book> example = Example.of(data);
 
         if( !bookRepository.findAll(example).isEmpty() ){
@@ -55,7 +62,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Optional<Book> readById(Long id) {
+    public Book create(Book data) {
+//        ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("id");
+        Example<Book> example = Example.of(data);
+
+        if( !bookRepository.findAll(example).isEmpty() ){
+            throw new ExistingEntityException();
+        }
+        return bookRepository.save(data);
+    }
+
+    @Override
+    public Optional<Book> readById(String id) {
         return bookRepository.findById(id);
     }
 
@@ -70,7 +88,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         bookRepository.deleteById(id);
     }
 }
