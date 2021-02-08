@@ -1,5 +1,8 @@
 package cz.cvut.fit.tjv.semestral.data.entities;
 
+import org.springframework.lang.NonNull;
+import org.springframework.util.StringUtils;
+
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Collection;
@@ -7,8 +10,7 @@ import java.util.Collection;
 @Entity
 public class Book {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    private final String id;
 
     @ManyToMany(mappedBy = "booksCreatedBy")  // it is a week side
     private Collection<User> creatorId; // FK
@@ -17,6 +19,7 @@ public class Book {
     private String bookName;
     private String publishDate;
     private String description;
+    private String img;
     private Integer issueNumber;  // nomer vipuska, dobav volume
 
     private Integer satisfactionScore = 0;  // can be rised up and down, by default = 0
@@ -26,10 +29,11 @@ public class Book {
         this.publishDate = "";
         this.description = "";
         this.issueNumber = 0;
-        creatorId = null;
+        this.creatorId = null;
+        this.id = issueNumber.toString();
     }
 
-    public Book(String bookName, String publishDate, Integer issueNumber,
+    public Book(@NonNull String bookName, String publishDate,@NonNull Integer issueNumber,
                 String description, Collection<User> creatorId) {
         this.bookName = bookName;
         this.publishDate = publishDate;
@@ -37,10 +41,19 @@ public class Book {
         this.description = description;
         this.satisfactionScore = 0;
         this.creatorId = creatorId;
+        this.id = bookName.replaceAll("\\s","") + issueNumber.toString();
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public Collection<User> getCreatorId() {

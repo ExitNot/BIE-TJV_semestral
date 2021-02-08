@@ -4,7 +4,7 @@ import org.springframework.hateoas.RepresentationModel;
 import java.util.Collection;
 
 public class BookDto extends RepresentationModel<BookDto> {
-    private Long id;
+    private String id;
     private String bookName;
     private Integer satisfactionScore;
     private String publishDate;
@@ -15,7 +15,7 @@ public class BookDto extends RepresentationModel<BookDto> {
     public BookDto() {
     }
 
-    public BookDto( Long id, String bookName, Integer satisfactionScore, String publishDate,
+    public BookDto( String id, String bookName, Integer satisfactionScore, String publishDate,
                     Integer issueNumber, String description, Collection<Long> creatorId) {
         this.id = id;
         this.bookName = bookName;
@@ -29,11 +29,11 @@ public class BookDto extends RepresentationModel<BookDto> {
         this.creatorId = creatorId;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id){ this.id = id; }
+    public void setId(String id){ this.id = id; }
 
     public String getBookName() {
         return bookName;

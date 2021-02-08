@@ -63,7 +63,7 @@ public class BookController {
     @GetMapping("/id={id}")  // "/?id={id}" is not working
     public BookDto readOne(@PathVariable("id") String id){
         return bookDtoAssembler.toModel(
-                bookService.readById(Long.parseLong(id)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
+                bookService.readById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
         ).add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).readAll(0, 5)
                                 ).withRel(IanaLinkRelations.COLLECTION));
     }
@@ -81,7 +81,7 @@ public class BookController {
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@RequestParam Long id){
+    public void delete(@RequestParam String id){
         try{
             bookService.delete(id);
         } catch (EmptyResultDataAccessException e){
