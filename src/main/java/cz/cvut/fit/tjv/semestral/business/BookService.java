@@ -6,5 +6,5 @@ import org.springframework.web.multipart.MultipartFile;
 public interface BookService extends CrudService<Book, String>{
     void RateUp(Book b) throws IllegalAccessException;
     void RateDown(Book b) throws IllegalAccessException;
-    Book create(Book b, MultipartFile img);
+//    Book create(Book b, MultipartFile img);
 }

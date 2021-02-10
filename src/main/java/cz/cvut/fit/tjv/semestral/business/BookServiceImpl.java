@@ -46,20 +46,20 @@ public class BookServiceImpl implements BookService {
         book.downSatisfactionScore();
     }
 
-    @Override
-    public Book create(Book data, MultipartFile img) {
-        try {
-            data.setImg(Base64.getEncoder().encodeToString(img.getBytes()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Example<Book> example = Example.of(data);
-
-        if( !bookRepository.findAll(example).isEmpty() ){
-            throw new ExistingEntityException();
-        }
-        return bookRepository.save(data);
-    }
+//    @Override
+//    public Book create(Book data, MultipartFile img) {
+//        try {
+//            data.setImg(Base64.getEncoder().encodeToString(img.getBytes()));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        Example<Book> example = Example.of(data);
+//
+//        if( !bookRepository.findAll(example).isEmpty() ){
+//            throw new ExistingEntityException();
+//        }
+//        return bookRepository.save(data);
+//    }
 
     @Override
     public Book create(Book data) {
