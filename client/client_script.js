@@ -27,24 +27,21 @@ create_form.addEventListener("submit", function(e){
         "description" : in_description
     };
 
-    // const response = await 
     fetch(url, {
     method: 'POST',
-    // mode: 'no-cors',
     body: JSON.stringify(data),
-    json: true,
+    // json: true,
     headers: {
         'Accept' : 'application/json',
         'Content-Type' : 'application/json',
         'Access-Control-Allow-Origin' : 'http://localhost:8080',
         authorization : 'Setler nepredsk4zuemo'
-        // credentials: 'include'
-    },
-    }).then(function(response){
-        const json = response.json(); // await
-        console.log('Успех:', JSON.stringify(json));
+    }
+    }).then( async function(response){
+        const json = await response.json(); // await
+        console.log('Response:', json);
     }).catch(function(error){
-        console.error('Ошибка:', error);
+        console.error('Error:', error);
     });
     
     // const response = await fetch(url, {
@@ -61,7 +58,6 @@ create_form.addEventListener("submit", function(e){
     //     body: JSON.stringify(data) // body data type must match "Content-Type" header
     //   });
 // POST http://localhost:8080/api/v1/books
-// Content-Type: application/json
 });
 
 search_form.addEventListener("submit", function(e){
@@ -74,18 +70,16 @@ function get_request() {
     
     fetch(url, {
         method: 'GET',
-        // mode: 'no-cors',
-        json: true,
         headers: {
             'Accept': 'application/json',
             authorization: 'Setler nepredsk4zuemo'
-            // credentials: 'include'
         }
-        }).then(function(response){
-            const json = response.json(); // await
-            console.log('Успех:', JSON.stringify(json));
+        }).then( async function(response){
+            // console.log('txt: ', response.text())
+            const json = await response.json(); // await
+            console.log('Response:', json);
         }).catch(function(error){
-            console.error('Ошибка:', error);
+            console.error('Error:', error);
         });
         
 }
