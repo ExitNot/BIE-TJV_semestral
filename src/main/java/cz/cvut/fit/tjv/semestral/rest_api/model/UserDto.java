@@ -10,20 +10,20 @@ import java.util.Collection;
 public class UserDto extends RepresentationModel<UserDto> {
     private Long id;
     private Auth login;
-    private Collection<Book> booksCreatedBy;
     private String UserType;
     private String displayedName;
     private String email;
+    private Collection<String> booksCreatedBy;
 
     UserDto(){}
 
-    public UserDto(Long id, Auth login, Collection<Book> booksCreatedBy, String userType, String displayedName, String email) {
+    public UserDto(Long id, Auth login, String userType, String displayedName, String email, Collection<String> booksCreatedBy) {
         this.id = id;
         this.login = login;
-        this.booksCreatedBy = booksCreatedBy;
-        UserType = userType;
+        this.UserType = userType;
         this.displayedName = displayedName;
         this.email = email;
+        this.booksCreatedBy = booksCreatedBy;
     }
 
     public Long getId() {
@@ -42,11 +42,11 @@ public class UserDto extends RepresentationModel<UserDto> {
         this.login = login;
     }
 
-    public Collection<Book> getBooksCreatedBy() {
+    public Collection<String> getBooksCreatedBy() {
         return booksCreatedBy;
     }
 
-    public void setBooksCreatedBy(Collection<Book> booksCreatedBy) {
+    public void setBooksCreatedBy(Collection<String> booksCreatedBy) {
         this.booksCreatedBy = booksCreatedBy;
     }
 
