@@ -32,9 +32,9 @@ class UserServiceImplTest {
 
     @Test
     void create() {
-        Example<User> book_ex = Example.of(usr1);
+        Example<User> user_ex = Example.of(usr1);
 
-        BDDMockito.given(userRepository.findAll(book_ex)).willReturn(Collections.emptyList());
+        BDDMockito.given(userRepository.findAll(user_ex)).willReturn(Collections.emptyList());
         BDDMockito.given(userRepository.save(usr1)).willReturn(usr1);
 
         User result = userService.create(usr1);
@@ -43,12 +43,12 @@ class UserServiceImplTest {
 
     @Test
     void readById() {
-        Optional<User> optional_book1 = Optional.of(usr1);
+        Optional<User> optional_user = Optional.of(usr1);
 
-        BDDMockito.given(userRepository.findById(usr1.getId())).willReturn(optional_book1);
+        BDDMockito.given(userRepository.findById(usr1.getId())).willReturn(optional_user);
 
         Optional<User> result = userService.readById(usr1.getId());
-        Assertions.assertEquals(optional_book1.get(), result.get());
+        Assertions.assertEquals(optional_user.get(), result.get());
     }
 
     @Test
