@@ -70,18 +70,18 @@ class BookControllerTest {
     }
 
     /** Here we receive 200 HTML code but expecting 409 */
-//    @Test
-//    void createConflict() throws Exception {
-//        BDDMockito.given(bookService.create(book1)).willThrow(ExistingEntityException.class);
-//
-//        mockMvc.perform(
-//                MockMvcRequestBuilders.post("/api/v1/books")
-//                    .content("{\"bookName\" : \"Simpsons Comics\", \"issueNumber\" : 95, " +
-//                            "\"publishDate\" : \"June 2004\", \"description\" : \"Coach Me If You Can\", " +
-//                            "\"creatorId\" : [] }")
-//                    .contentType("application/json")
-//        ).andExpect(MockMvcResultMatchers.status().isConflict());
-//    }
+    @Test
+    void createConflict() throws Exception {
+        BDDMockito.given(bookService.create(book1)).willThrow(ExistingEntityException.class);
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/v1/books")
+                    .content("{\"bookName\" : \"Simpsons Comics\", \"issueNumber\" : 95, " +
+                            "\"publishDate\" : \"June 2004\", \"description\" : \"Coach Me If You Can\", " +
+                            "\"creatorId\" : [] }")
+                    .contentType("application/json")
+        ).andExpect(MockMvcResultMatchers.status().isConflict());
+    }
 
 //    @Test
     void readOne() {

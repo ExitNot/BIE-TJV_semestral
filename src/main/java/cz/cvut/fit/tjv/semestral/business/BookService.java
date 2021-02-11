@@ -4,7 +4,7 @@ import cz.cvut.fit.tjv.semestral.data.entities.*;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface BookService extends CrudService<Book, String>{
-    void RateUp(Book b) throws IllegalAccessException;
-    void RateDown(Book b) throws IllegalAccessException;
-//    Book create(Book b, MultipartFile img);
+    void RateUp(String id);
+    void RateDown(String id);
+//    void updateImg(String id, MultipartFile img);
 }

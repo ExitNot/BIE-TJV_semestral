@@ -1,16 +1,21 @@
-// let search_form = document.querySelector(".roof form");
+// let search_form = document.querySelector(".control form");
 let create_form = document.querySelector(".create_modal form");
 let search_form = document.getElementById("search_form_id");
-
-// if(!create_form){
-//     console.log(document.querySelector(".create_modal form"));
-// } else{
-//     alert("nakonecto eta huynya nahoditsya");
-// }
+// let list = document.getSelection(".list");
+let list = document.getElementsByClassName("list")[0];
 
 function create_form_close() {
     document.getElementById('create_modal_id').style.display='none';
 }
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    const modal = document.getElementById("create_modal_id");
+
+    if (event.target == modal) {
+      create_form_close();
+    }
+  }
 
 create_form.addEventListener("submit", function(e){
     e.preventDefault();
@@ -18,6 +23,7 @@ create_form.addEventListener("submit", function(e){
     const in_issueNumber = document.getElementById("issueNumber").value;
     const in_publishDate = document.getElementById("publishDate").value;
     const in_description = document.getElementById("description").value;
+    const img = document.getElementById("img").value;
     const url = 'http://localhost:8080/api/v1/books';
 
     const data = {
@@ -30,43 +36,28 @@ create_form.addEventListener("submit", function(e){
     fetch(url, {
     method: 'POST',
     body: JSON.stringify(data),
-    // json: true,
     headers: {
-        'Accept' : 'application/json',
         'Content-Type' : 'application/json',
-        'Access-Control-Allow-Origin' : 'http://localhost:8080',
         authorization : 'Setler nepredsk4zuemo'
     }
-    }).then( async function(response){
-        const json = await response.json(); // await
-        console.log('Response:', json);
     }).catch(function(error){
-        console.error('Error:', error);
+        alert('Error:', error);
+        // console.error('Error:', error);
     });
-    
-    // const response = await fetch(url, {
-    //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    //     mode: 'cors', // no-cors, *cors, same-origin
-    //     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    //     credentials: 'same-origin', // include, *same-origin, omit
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //       // 'Content-Type': 'application/x-www-form-urlencoded',
-    //     },
-    //     redirect: 'follow', // manual, *follow, error
-    //     referrerPolicy: 'no-referrer', // no-referrer, *client
-    //     body: JSON.stringify(data) // body data type must match "Content-Type" header
-    //   });
-// POST http://localhost:8080/api/v1/books
+
+    // .then( async function(response){
+    //     // const json = await response.json(); // await
+    //     console.log('Response:', response.status);
+    // })
 });
 
 search_form.addEventListener("submit", function(e){
     e.preventDefault();
     get_request();
-})
+});
 
-function get_request() {
-    url = "http://localhost:8080/api/v1/books?page=0&size=2"
+async function get_request() {
+    url = "http://localhost:8080/api/v1/books?page=0&size=6";
     
     fetch(url, {
         method: 'GET',
@@ -74,14 +65,63 @@ function get_request() {
             'Accept': 'application/json',
             authorization: 'Setler nepredsk4zuemo'
         }
-        }).then( async function(response){
-            // console.log('txt: ', response.text())
-            const json = await response.json(); // await
-            console.log('Response:', json);
-        }).catch(function(error){
-            console.error('Error:', error);
-        });
-        
+        }).then( async (response) => {
+            const json = await response.json();
+            // console.log('Response: ', json);
+
+            // removing all li tags from ul
+            $(list).empty(); 
+            if( json.page.totalElements == 0 ){
+                alert("DB is empty");
+            } else{
+                for( i = 0; i < json._embedded.bookDtoList.length; i++ ){
+                    create_block(json._embedded.bookDtoList[i]);
+                }
+            }
+        }).catch( (error) => {
+            console.error('Error: ', error);
+    });
+}
+
+function create_block( book_json ){
+    bookName = book_json.bookName;
+    issueNumber = book_json.issueNumber;
+    bookId = bookName.replace(/\s/g, '') + issueNumber;
+    satisfactionScore = book_json.satisfactionScore;
+
+    // console.log(json);
+    let li = document.createElement("li");
+    li.classList.add("book");
+    let HTMLbox = `
+        <h2 class="name">
+            <span>${bookName}#${issueNumber}</span>
+        </h2>
+        <div vclass="satisfactionScore"><sup>${satisfactionScore}</sup></div>
+        <button class="upratebtn" id="${bookId}" onclick="upRate(this)">Up</button>
+        <button class="downratebtn" id="${bookId}" onclick="downRate(this)">Down</button>
+    `;
+    li.innerHTML = HTMLbox;
+    // li.style.backgroundImage = cover;    <img>
+    list.appendChild(li);
+}
+
+function upRate( book ){
+    id = book.id;
+    // console.log("ID: ", id);
+    url = `http://localhost:8080/api/v1/books/up/id=${id}`;
+    
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            authorization: 'Setler nepredsk4zuemo'
+        }
+        }).catch( (error) => {
+            console.error('Error: ', error);
+    });
+}
+
+function downRate( book ){
+    
 }
 
 // ~async function create_form_submit(e){

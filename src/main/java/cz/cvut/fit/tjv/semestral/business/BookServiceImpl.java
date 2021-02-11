@@ -24,10 +24,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void RateUp(Book b) throws IllegalAccessException {
-        Optional<Book> bookOptional = bookRepository.findById(b.getId());
+    public void RateUp(String id) {
+        Optional<Book> bookOptional = bookRepository.findById(id);
         if( bookOptional.isEmpty() ){
-            throw new IllegalAccessException();
+            throw new ExistingEntityException();
         }
 
         Book book = bookOptional.get();
@@ -35,35 +35,19 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void RateDown(Book b) throws IllegalAccessException {
-        Optional<Book> bookOptional = bookRepository.findById(b.getId());
+    public void RateDown(String id) {
+        Optional<Book> bookOptional = bookRepository.findById(id);
 
         if( bookOptional.isEmpty() ){
-            throw new IllegalAccessException();
+            throw new ExistingEntityException();
         }
 
         Book book = bookOptional.get();
         book.downSatisfactionScore();
     }
 
-//    @Override
-//    public Book create(Book data, MultipartFile img) {
-//        try {
-//            data.setImg(Base64.getEncoder().encodeToString(img.getBytes()));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Example<Book> example = Example.of(data);
-//
-//        if( !bookRepository.findAll(example).isEmpty() ){
-//            throw new ExistingEntityException();
-//        }
-//        return bookRepository.save(data);
-//    }
-
     @Override
     public Book create(Book data) {
-//        ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("id");
         Example<Book> example = Example.of(data);
 
         if( !bookRepository.findAll(example).isEmpty() ){
@@ -86,6 +70,11 @@ public class BookServiceImpl implements BookService {
     public void update(Book newData) {
         bookRepository.save(newData);
     }
+
+//    @Override
+//    public void updateById(String id, MultipartFile img) {
+//        bookRepository.save(newData);
+//    }
 
     @Override
     public void delete(String id) {

@@ -22,7 +22,7 @@ button {
     color: white;
     padding: 16px 30px;
     margin: 8px 0;
-    border: none;
+    /* border: 2px; */
     cursor: pointer;
     width: 100%;
     opacity: 1;
@@ -33,6 +33,23 @@ button {
 }
 
 .cancelbtn, .submitbtn {
+    float: left;
+    width: 50%;
+}
+
+
+/* .control form button {
+    font-size: 16px;
+    color: white;
+    padding: 10px 15px;
+    margin-left: 10px;
+    /* float: left;
+    width: 100%; */
+    /* border-radius: 3px;
+    border: 1px solid #492f7a; */
+/* } */ 
+
+.searchbtn, .createbookbtn {
     float: left;
     width: 50%;
 }
@@ -78,15 +95,28 @@ button {
     color: #f1f1f1;
 }
 
+.list {
+    display: grid;
+    grid-gap: 30px 20px;
+    grid-template-columns: repeat(3, 1fr);
+    list-style-type: none;
+}
+
+.book {
+    padding: 40px 10%;
+}
+
+.upratebtn, .downratebtn {
+    float: left;
+    width: 50%;
+}
+
+h1 {
+    padding: 0 0 15px 0;
+}
+
 /* Style the horizontal ruler */
 hr {
     border: 1px solid #f1f1f1;
     margin-bottom: 25px;
 }
-
-/* Clear floats */
-/* .acceptenceButtons::after {
-    content: "";
-    clear: both;
-    display: table;
-} */

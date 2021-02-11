@@ -15,6 +15,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.stream.Collectors;
@@ -52,8 +53,27 @@ public class BookController {
         );
     }
 
-    @CrossOrigin( origins = "null" )
-    @PostMapping( consumes = MediaType.APPLICATION_JSON_VALUE )
+    @PutMapping("/up/id={id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void rateUp(@PathVariable("id") String id){
+        try {
+            bookService.RateUp(id);
+        } catch (ExistingEntityException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/down/id={id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void rateDown(@RequestParam @PathVariable("id") String id){
+        try {
+            bookService.RateDown(id);
+        } catch (ExistingEntityException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping
     public void create(@RequestBody BookDto data){
         try {
             bookService.create(toEntity(data));
@@ -75,11 +95,19 @@ public class BookController {
         return pagedResourcesAssembler.toModel(bookService.readAll(PageRequest.of(page, size)), bookDtoAssembler);
     }
 
-    @PutMapping
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody BookDto data){
-        bookService.update(toEntity(data));
-    }
+//    @PutMapping
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public void update(@RequestBody BookDto data)
+//    {
+//        bookService.update(toEntity(data));
+//    }
+
+//    @PutMapping("/id={id}")
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public void updateById(@PathVariable String id,@RequestBody BookDto data)
+//    {
+//        bookService.update(toEntity(data));
+//    }
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
