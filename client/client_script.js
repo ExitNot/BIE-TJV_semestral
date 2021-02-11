@@ -123,8 +123,3 @@ function upRate( book ){
 function downRate( book ){
     
 }
-
-// ~async function create_form_submit(e){
-// }
-
-// create_form.addEventListener("submit", create_form_submit());

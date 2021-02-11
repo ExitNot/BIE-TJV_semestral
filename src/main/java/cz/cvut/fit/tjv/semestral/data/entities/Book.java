@@ -56,6 +56,24 @@ public class Book {
         this.img = img;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (!(obj instanceof Book))
+            return false;
+        Book other = (Book) obj;
+        boolean bookNameEquals = (this.bookName == null && other.bookName == null)
+                || (this.bookName != null && this.bookName.equals(other.bookName));
+        boolean issueNumberEquals = (this.issueNumber == null && other.issueNumber == null)
+                || (this.issueNumber != null && this.issueNumber.equals(other.issueNumber));
+        boolean publishDateEquals = (this.publishDate == null && other.publishDate == null)
+                || (this.publishDate != null && this.publishDate.equals(other.publishDate));
+        boolean descriptionEquals = (this.description == null && other.description == null)
+                || (this.description != null && this.description.equals(other.description));
+        return bookNameEquals && issueNumberEquals && publishDateEquals && descriptionEquals;
+    }
+
     public Collection<User> getCreatorId() {
         return creatorId;
     }

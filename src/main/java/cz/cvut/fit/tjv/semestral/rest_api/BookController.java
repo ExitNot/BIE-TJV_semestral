@@ -65,7 +65,7 @@ public class BookController {
 
     @PutMapping("/down/id={id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void rateDown(@RequestParam @PathVariable("id") String id){
+    public void rateDown(@PathVariable("id") String id){
         try {
             bookService.RateDown(id);
         } catch (ExistingEntityException e){
@@ -95,19 +95,12 @@ public class BookController {
         return pagedResourcesAssembler.toModel(bookService.readAll(PageRequest.of(page, size)), bookDtoAssembler);
     }
 
-//    @PutMapping
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void update(@RequestBody BookDto data)
-//    {
-//        bookService.update(toEntity(data));
-//    }
-
-//    @PutMapping("/id={id}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void updateById(@PathVariable String id,@RequestBody BookDto data)
-//    {
-//        bookService.update(toEntity(data));
-//    }
+    @PutMapping("/id={id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable("id") String id, @RequestBody BookDto data)
+    {
+        bookService.update(id, toEntity(data));
+    }
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)

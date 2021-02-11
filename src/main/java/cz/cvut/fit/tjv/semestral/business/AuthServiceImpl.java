@@ -39,7 +39,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void update(Auth newData) {
+    public void update(String id, Auth newData) {
         authRepository.save(newData);
     }
 

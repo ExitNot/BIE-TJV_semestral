@@ -90,14 +90,13 @@ public class BookDto extends RepresentationModel<BookDto> {
 
         BookDto bookDto = (BookDto) o;
 
-        if (!id.equals(bookDto.id)) return false;
         if (!bookName.equals(bookDto.bookName)) return false;
         if (!satisfactionScore.equals(bookDto.satisfactionScore)) return false;
-        if (publishDate != null ? !publishDate.equals(bookDto.publishDate) : bookDto.publishDate != null) return false;
         if (issueNumber != null ? !issueNumber.equals(bookDto.issueNumber) : bookDto.issueNumber != null) return false;
         if (description != null ? !description.equals(bookDto.description) : bookDto.description != null) return false;
-        return creatorId != null ? creatorId.equals(bookDto.creatorId) : bookDto.creatorId == null;
+        return publishDate != null ? !publishDate.equals(bookDto.publishDate) : bookDto.publishDate != null;
     }
+
 
     @Override
     public int hashCode() {

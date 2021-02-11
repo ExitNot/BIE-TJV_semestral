@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(User newData) {
+    public void update(Long id, User newData) {
         userRepository.save(newData);
     }
 

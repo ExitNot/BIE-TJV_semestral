@@ -12,7 +12,7 @@ public interface CrudService<T, k> {
 
     Page<T> readAll(Pageable pageable);
 
-    void update(T newData);
+    void update(k id, T newData);
 
     void delete(k id);
 

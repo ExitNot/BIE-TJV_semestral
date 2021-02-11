@@ -32,6 +32,8 @@ public class BookServiceImpl implements BookService {
 
         Book book = bookOptional.get();
         book.upSatisfactionScore();
+        bookRepository.deleteById(id);
+        bookRepository.save(book);
     }
 
     @Override
@@ -44,6 +46,8 @@ public class BookServiceImpl implements BookService {
 
         Book book = bookOptional.get();
         book.downSatisfactionScore();
+        bookRepository.deleteById(id);
+        bookRepository.save(book);
     }
 
     @Override
@@ -67,14 +71,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void update(Book newData) {
+    public void update(String id, Book newData) {
+        bookRepository.deleteById(id);
         bookRepository.save(newData);
     }
-
-//    @Override
-//    public void updateById(String id, MultipartFile img) {
-//        bookRepository.save(newData);
-//    }
 
     @Override
     public void delete(String id) {
