@@ -8,6 +8,7 @@ import cz.cvut.fit.tjv.semestral.data.entities.Book;
 import cz.cvut.fit.tjv.semestral.data.entities.User;
 import cz.cvut.fit.tjv.semestral.rest_api.model.BookDto;
 import org.hamcrest.CoreMatchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
@@ -30,8 +31,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.mockito.Mockito.doNothing;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -45,13 +45,6 @@ class BookControllerTest {
             "24/7th Heaven", null);
     private final Book book2 = new Book( "Simpsons Comics", "June 2004", 95,
             "Coach Me If You Can", null);
-
-//    @BeforeEach
-//    void setUp(){
-//        BDDMockito.given(bookService.create(book1)).willReturn(book1);
-//        BDDMockito.given(bookService.create(book2)).willThrow(ExistingEntityException.class);
-//        BDDMockito.given(bookService.readAll(pageable)).willReturn(pageExpected);
-//    }
 
     @Test
     void create() throws Exception {
@@ -88,8 +81,7 @@ class BookControllerTest {
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/v1/books/id={id}", book1.getId())
         ).andExpect(MockMvcResultMatchers.status().isOk()
-        );
-//        ).andExpect(MockMvcResultMatchers.jsonPath("$._links.self.href", CoreMatchers.endsWith("/api/v1/books?page=0&size=2")));
+        ).andExpect(MockMvcResultMatchers.jsonPath("$._links.self.href", CoreMatchers.endsWith("/api/v1/books/id=SimpsonsComics94")));
     }
 
 
@@ -108,20 +100,27 @@ class BookControllerTest {
     }
 
 //    @Test
-//    void update() {
-////        book1.setPublishDate("");
-//        Book book_changed = book1;
-//        book_changed.setDescription("24/7th Hell");
+    void update() {
+//        Book old_book = book1;
+//        old_book.setDescription("---------");
 //
-//        BDDMockito.given(bookService.update()).willReturn(pageExpected);
+//        doNothing().when(bookService).update(old_book.getId() ,book1);  // bookService
+//        BDDMockito.given(bookService.readById(old_book.getId())).willReturn(Optional.of(book1));
+//
+////        bookService.update(old_book.getId(), book1);
+////        old_book = bookService.readById(old_book.getId()).get();
+////        Assertions.assertEquals(book1, old_book);
 //
 //        mockMvc.perform(
-//                MockMvcRequestBuilders.put("/api/v1/books")
-//        ).andExpect(MockMvcResultMatchers.status().isOk()
-//        ).andExpect(MockMvcResultMatchers.jsonPath("$._links.self.href", CoreMatchers.endsWith("/api/v1/books?page=0&size=2")));
-//    }
+//                MockMvcRequestBuilders.put("/api/v1/books/id={id}", old_book.getId())
+//                        .content("{\"bookName\" : \"Simpsons Comics\", \"issueNumber\" : 94, " +
+//                        "\"publishDate\" : \"May 2004\", \"description\" : \"24/7th Heaven\" }")
+//                        .contentType("application/json")
+//        ).;
+    }
 
 //    @Test
     void delete() {
+
     }
 }
