@@ -43,13 +43,8 @@ class BookControllerTest {
 
     private final Book book1 = new Book( "Simpsons Comics", "May 2004", 94,
             "24/7th Heaven", null);
-//    private BookDto bookDto1 = new BookDto( 1L, "Simpsons Comics",
-//            0, "May 2004", 94, "24/7th Heaven", List.of(Long.valueOf( 1 )));
-//
     private final Book book2 = new Book( "Simpsons Comics", "June 2004", 95,
             "Coach Me If You Can", null);
-//    private BookDto bookDto2 = new BookDto( 2L, "Simpsons Comics",
-//            0, "May 2004", 94, "24/7th Heaven", null);
 
 //    @BeforeEach
 //    void setUp(){
