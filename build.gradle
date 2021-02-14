@@ -17,8 +17,8 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'  // Spring JPA
-    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
-    implementation 'org.jetbrains:annotations:20.1.0'// HATEOAS
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas'  // HATEOAS
+    implementation 'org.jetbrains:annotations:20.1.0'
     runtimeOnly 'org.postgresql:postgresql:42.2.18'  // JDBC driver
     runtimeOnly 'com.h2database:h2'  // H2
 

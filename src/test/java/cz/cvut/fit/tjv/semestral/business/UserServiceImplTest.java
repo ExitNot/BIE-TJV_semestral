@@ -15,7 +15,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doNothing;
 
 @SpringBootTest(classes = {cz.cvut.fit.tjv.semestral.business.UserServiceImpl.class})

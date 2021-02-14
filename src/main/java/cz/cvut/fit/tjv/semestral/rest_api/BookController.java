@@ -20,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "null", maxAge = 3600)
 @RestController
 @RequestMapping( path = "/api/v1/books" )
 public class BookController {
@@ -53,9 +54,9 @@ public class BookController {
         );
     }
 
-    @PutMapping("/up/id={id}")
+    @PutMapping("/up")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void rateUp(@PathVariable("id") String id){
+    public void rateUp(@RequestParam String id){
         try {
             bookService.RateUp(id);
         } catch (ExistingEntityException e){
@@ -63,9 +64,9 @@ public class BookController {
         }
     }
 
-    @PutMapping("/down/id={id}")
+    @PutMapping("/down")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void rateDown(@PathVariable("id") String id){
+    public void rateDown(@RequestParam String id){
         try {
             bookService.RateDown(id);
         } catch (ExistingEntityException e){
@@ -95,12 +96,12 @@ public class BookController {
         return pagedResourcesAssembler.toModel(bookService.readAll(PageRequest.of(page, size)), bookDtoAssembler);
     }
 
-    @PutMapping("/id={id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable("id") String id, @RequestBody BookDto data)
-    {
-        bookService.update(id, toEntity(data));
-    }
+//    @PutMapping("/id={id}")
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public void update(@PathVariable("id") String id, @RequestBody BookDto data)
+//    {
+//        bookService.update(id, toEntity(data));
+//    }
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)

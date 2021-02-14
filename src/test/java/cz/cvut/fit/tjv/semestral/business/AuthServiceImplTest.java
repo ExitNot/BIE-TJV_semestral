@@ -26,6 +26,7 @@ class AuthServiceImplTest {
 
     private final Auth auth1 = new Auth( "mynickname", null, "3wRv!re6");
     private final Auth auth2 = new Auth( "mynickname142", null, "H5v$!rv6");
+
     @Test
     void create() {
         Example<Auth> auth_ex = Example.of(auth1);
