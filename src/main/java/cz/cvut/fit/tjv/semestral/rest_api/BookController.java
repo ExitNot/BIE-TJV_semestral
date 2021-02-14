@@ -96,12 +96,12 @@ public class BookController {
         return pagedResourcesAssembler.toModel(bookService.readAll(PageRequest.of(page, size)), bookDtoAssembler);
     }
 
-//    @PutMapping("/id={id}")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void update(@PathVariable("id") String id, @RequestBody BookDto data)
-//    {
-//        bookService.update(id, toEntity(data));
-//    }
+    @PutMapping("/id={id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable("id") String id, @RequestBody BookDto data)
+    {
+        bookService.update(id, toEntity(data));
+    }
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)

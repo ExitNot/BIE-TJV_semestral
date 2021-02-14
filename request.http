@@ -70,15 +70,15 @@ Content-Type: application/json
 
 ### update
 
-#PUT http://localhost:8080/api/v1/books/id=SimpsonsComics99
-#Content-Type: application/json
-#
-#{
-#  "bookName" : "Simpsons Comics",
-#  "issueNumber" : 99,
-#  "publishDate" : "October 2004",
-#  "description" : "Marge Simpson Living"
-#}
+PUT http://localhost:8080/api/v1/books/id=SimpsonsComics99
+Content-Type: application/json
+
+{
+  "bookName" : "Simpsons Comics",
+  "issueNumber" : 99,
+  "publishDate" : "October 2004",
+  "description" : "Marge Simpson Living"
+}
 
 ###
 
