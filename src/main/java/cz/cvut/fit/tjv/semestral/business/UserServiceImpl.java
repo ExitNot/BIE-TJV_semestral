@@ -1,7 +1,6 @@
 package cz.cvut.fit.tjv.semestral.business;
 
 import cz.cvut.fit.tjv.semestral.data.UserRepository;
-import cz.cvut.fit.tjv.semestral.data.entities.Auth;
 import cz.cvut.fit.tjv.semestral.data.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

@@ -2,7 +2,6 @@ package cz.cvut.fit.tjv.semestral.business;
 
 import cz.cvut.fit.tjv.semestral.data.AuthRepository;
 import cz.cvut.fit.tjv.semestral.data.entities.Auth;
-import cz.cvut.fit.tjv.semestral.data.entities.Book;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;

@@ -21,17 +21,21 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.BDDMockito.willThrow;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -99,28 +103,28 @@ class BookControllerTest {
         ).andExpect(MockMvcResultMatchers.jsonPath("$._links.self.href", CoreMatchers.endsWith("/api/v1/books?page=0&size=2")));
     }
 
-//    @Test
-    void update() {
-//        Book old_book = book1;
-//        old_book.setDescription("---------");
-//
-//        doNothing().when(bookService).update(old_book.getId() ,book1);  // bookService
-//        BDDMockito.given(bookService.readById(old_book.getId())).willReturn(Optional.of(book1));
-//
-////        bookService.update(old_book.getId(), book1);
-////        old_book = bookService.readById(old_book.getId()).get();
-////        Assertions.assertEquals(book1, old_book);
-//
-//        mockMvc.perform(
-//                MockMvcRequestBuilders.put("/api/v1/books/id={id}", old_book.getId())
-//                        .content("{\"bookName\" : \"Simpsons Comics\", \"issueNumber\" : 94, " +
-//                        "\"publishDate\" : \"May 2004\", \"description\" : \"24/7th Heaven\" }")
-//                        .contentType("application/json")
-//        ).;
+    @Test
+    void update() throws Exception {
+        Book old_book = book1;
+        old_book.setDescription("---------");
+
+        doNothing().when(bookService).update(old_book.getId(), book1);  // bookService
+
+        bookService.update(old_book.getId(), book1);
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.put("/api/v1/books/id={id}", old_book.getId())
+                        .content("{\"bookName\" : \"Simpsons Comics\", \"issueNumber\" : 94, " +
+                        "\"publishDate\" : \"May 2004\", \"description\" : \"24/7th Heaven\" }")
+                        .contentType("application/json")
+        ).andExpect(MockMvcResultMatchers.status().isNoContent());
     }
 
-//    @Test
-    void delete() {
+    @Test
+    void delete() throws Exception {
+        doNothing().when(bookService).delete(book1.getId());
 
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/books?id={id}", book1.getId())
+        ).andExpect(MockMvcResultMatchers.status().isNoContent());
     }
 }
